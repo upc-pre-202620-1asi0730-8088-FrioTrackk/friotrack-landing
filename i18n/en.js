@@ -55,7 +55,7 @@ window.FT_I18N.en = {
   fact2_num: "Over 12 million",
   fact2_txt: "tonnes of food are lost along Peru's production chain, according to the FAO (2022).",
   fact3_num: "41 corridors",
-  fact3_txt: "were identified by Peru's Ministry of Transport (MTC, 2023). Those linking La Libertad, Ica, Piura and Lambayeque with Lima carry a large share of the cargo.",
+  fact3_txt: "were identified by Peru's Ministry of Transport (MTC, 2023). FríoTrack proposes starting on routes linking La Libertad, Ica, Piura and Lambayeque with Lima.",
   prob_sources: "Sources: World Bank (2023), FAO (2022), MTC (2023).",
   cmp_today_title: "Today, on the road",
   cmp_today_1: "Manual thermometers or passive loggers with no remote connection.",
@@ -302,3 +302,11 @@ window.FT_I18N.en = {
   viz_ago: "2 min ago",
   viz_ago2: "9 min ago"
 };
+
+Object.assign(window.FT_I18N.en, {"seg1_cta": "Explore as a logistics coordinator", "seg2_cta": "Explore as a cargo client", "f_error": "The message could not be sent. Please try again later.", "f_scope": "Academic demo: this form validates your details but does not send a message. Follow the project on GitHub."});
+
+Object.assign(window.FT_I18N.en, {"f_demo_title": "Your sample details are valid", "f_demo_msg": "Thank you, {name}. This demo did not send a request or schedule a meeting."});
+
+Object.assign(window.FT_I18N.en, {"team5_role": "Impact Mapping and backlog", "team5_desc": "Requirements and prioritization."});
+
+Object.assign(window.FT_I18N.en, {"fact2_txt": "tonnes of food are estimated to be lost or wasted each year in Peru (FAO, 2026). This national estimate is not limited to refrigerated transport.", "prob_sources": "Sources: World Bank (2023), FAO (2026), MTC (2023/2024)."});

@@ -10,9 +10,9 @@
   'use strict';
 
   var STORAGE_KEY = 'friotrack_lang';
-  var DEFAULT_LANG = 'es';
-  var LOCALES = { es: 'es-PE', en: 'en-US' };
-  var HTML_LANG = { es: 'es-419', en: 'en' };   // atributo lang de <html>
+  var DEFAULT_LANG = 'en';
+  var LOCALES = { es: 'es-419', en: 'en-US' };
+  var HTML_LANG = { es: 'es-419', en: 'en-US' };   // atributo lang de <html>
   var dict = window.FT_I18N || {};
   var current = DEFAULT_LANG;
 
@@ -20,8 +20,7 @@
     var saved = null;
     try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) { /* storage bloqueado */ }
     if (saved && dict[saved]) return saved;
-    var nav = (navigator.language || DEFAULT_LANG).slice(0, 2).toLowerCase();
-    return dict[nav] ? nav : DEFAULT_LANG;
+    return DEFAULT_LANG;
   }
 
   function t(key, vars) {

@@ -7,9 +7,7 @@
   // Precios referenciales en soles (PEN). Anual = 10 meses (2 meses gratis).
   var PLANS = { basic: 79, pro: 199 };
   // Cuando exista un backend, coloca aquí la URL a la que se enviará el formulario de contacto.
-  var CONTACT_ENDPOINT = null;
-  // Regla de contraseña del registro (8+ caracteres, mayúscula, minúscula y número).
-  var PWD_PATTERN = '(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}';
+  var CONTACT_ENDPOINT = (window.FT_CONFIG || {}).contactEndpoint || null;
 
   var FT = window.FT;
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -36,93 +34,20 @@
     burger.setAttribute('aria-label', FT.t(menu.classList.contains('open') ? 'menu_close' : 'menu_open'));
   });
 
-  /* ---------- 2. Modal de acceso / registro ---------- */
-  var modal = $('authModal');
-  var authForm = $('authForm');
-  var authTitle = $('modalTitle');
-  var authSubmit = $('authSubmitBtn');
-  var phoneGroup = $('phoneGroup');
-  var authPhone = $('authPhone');
-  var authPassword = $('authPassword');
-  var authTerms = $('authTerms');
-  var pwdHint = $('authPwdHint');
-  var authMsg = $('authMsg');
-  var switchText = $('authSwitchText');
-  var switchLink = $('authSwitchLink');
-  var isLogin = true;
-  var lastFocus = null;
-
-  function renderAuth() {
-    authTitle.setAttribute('data-i18n', isLogin ? 'auth_login_title' : 'auth_register_title');
-    authSubmit.setAttribute('data-i18n', isLogin ? 'auth_login_btn' : 'auth_register_btn');
-    switchText.setAttribute('data-i18n', isLogin ? 'auth_no_account' : 'auth_has_account');
-    switchLink.setAttribute('data-i18n', isLogin ? 'auth_register_link' : 'auth_login_link');
-    authTitle.textContent = FT.t(authTitle.getAttribute('data-i18n'));
-    authSubmit.textContent = FT.t(authSubmit.getAttribute('data-i18n'));
-    switchText.textContent = FT.t(switchText.getAttribute('data-i18n'));
-    switchLink.textContent = FT.t(switchLink.getAttribute('data-i18n'));
-    phoneGroup.hidden = isLogin;
-    authTerms.hidden = isLogin;
-    authPhone.required = !isLogin;
-    authPassword.setAttribute('autocomplete', isLogin ? 'current-password' : 'new-password');
-    // La regla de seguridad solo se exige al crear la cuenta, no al iniciar sesión.
-    if (isLogin) authPassword.removeAttribute('pattern'); else authPassword.setAttribute('pattern', PWD_PATTERN);
-    authPassword.setAttribute('data-i18n-placeholder', isLogin ? 'auth_password_ph_login' : 'auth_password_ph');
-    authPassword.setAttribute('placeholder', FT.t(isLogin ? 'auth_password_ph_login' : 'auth_password_ph'));
-    pwdHint.hidden = isLogin;
-    authMsg.hidden = true;
+  /* ---------- 2. Entry points to the Vue application ---------- */
+  var appBase = (window.FT_CONFIG || {}).frontendBaseUrl || 'http://127.0.0.1:5173/';
+  function openApplication(mode, role) {
+    var url = new URL(appBase, window.location.href);
+    url.hash = '/' + mode + '?role=' + encodeURIComponent(role || 'coordinator') + '&lang=' + FT.lang;
+    window.location.assign(url.href);
   }
-
-  function openModal(mode) {
-    isLogin = mode === 'login';
-    lastFocus = document.activeElement;
-    setMenu(false);
-    renderAuth();
-    modal.hidden = false;
-    document.body.style.overflow = 'hidden';
-    $('authEmail').focus();
-  }
-  function closeModal() {
-    modal.hidden = true;
-    document.body.style.overflow = '';
-    authForm.reset();
-    authMsg.hidden = true;
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
-  }
-
-  $('btnLogin').addEventListener('click', function () { openModal('login'); });
-  $('btnRegister').addEventListener('click', function () { openModal('register'); });
-  document.querySelectorAll('.action-register').forEach(function (b) {
-    b.addEventListener('click', function () { openModal('register'); });
+  $('btnLogin').addEventListener('click', function () { openApplication('login'); });
+  $('btnRegister').addEventListener('click', function () { openApplication('register'); });
+  document.querySelectorAll('.action-register').forEach(function (button) {
+    button.addEventListener('click', function () { openApplication('register', button.dataset.role); });
   });
-  $('closeModal').addEventListener('click', closeModal);
-  modal.addEventListener('mousedown', function (e) { if (e.target === modal) closeModal(); });
-  switchLink.addEventListener('click', function (e) {
-    e.preventDefault();
-    isLogin = !isLogin;
-    renderAuth();
-  });
-  authForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (!authForm.checkValidity()) { authForm.reportValidity(); return; }
-    authMsg.hidden = false; // versión demostrativa: aún no hay backend
-  });
-  document.addEventListener('ft:lang', function () { if (!modal.hidden) renderAuth(); });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      if (!modal.hidden) closeModal();
-      else if (menu.classList.contains('open')) { setMenu(false); burger.focus(); }
-    }
-    // Trampa de foco dentro del modal
-    if (e.key === 'Tab' && !modal.hidden) {
-      var f = modal.querySelectorAll('button, a[href], input, select, textarea');
-      var vis = Array.prototype.filter.call(f, function (n) { return n.offsetParent !== null; });
-      if (!vis.length) return;
-      var first = vis[0], last = vis[vis.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    }
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && menu.classList.contains('open')) { setMenu(false); burger.focus(); }
   });
 
   /* ---------- 3. Teléfonos: solo dígitos y "+" inicial ---------- */
@@ -206,6 +131,7 @@
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    $('contactError').hidden = true;
     form.classList.add('was-validated');
     if (!form.checkValidity()) { form.reportValidity(); return; }
 
@@ -213,7 +139,10 @@
     new FormData(form).forEach(function (v, k) { payload[k] = v; });
 
     var done = function () {
-      $('contactSuccessMsg').textContent = FT.t('f_ok_msg', { name: payload.name.split(' ')[0] });
+      var title = success.querySelector('[data-contact-title]');
+      title.setAttribute('data-i18n', CONTACT_ENDPOINT ? 'f_ok_title' : 'f_demo_title');
+      title.textContent = FT.t(CONTACT_ENDPOINT ? 'f_ok_title' : 'f_demo_title');
+      $('contactSuccessMsg').textContent = FT.t(CONTACT_ENDPOINT ? 'f_ok_msg' : 'f_demo_msg', { name: payload.name.split(' ')[0] });
       $('contactDemo').hidden = !!CONTACT_ENDPOINT; // sin backend, se avisa que es una demostración
       form.hidden = true;
       success.hidden = false;
@@ -224,13 +153,21 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
-      }).then(done).catch(done);
+      }).then(function (response) {
+        if (!response.ok) throw new Error('Contact request failed: ' + response.status);
+        done();
+      }).catch(function () {
+        var error = $('contactError');
+        error.textContent = FT.t('f_error');
+        error.hidden = false;
+      });
     } else {
       done(); // sin backend: solo confirma en pantalla
     }
   });
   $('contactAgain').addEventListener('click', function () {
     form.reset();
+    $('contactError').hidden = true;
     form.classList.remove('was-validated');
     form.hidden = false;
     success.hidden = true;
