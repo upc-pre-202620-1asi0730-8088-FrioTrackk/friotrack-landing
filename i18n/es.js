@@ -56,7 +56,7 @@ window.FT_I18N.es = {
   fact2_num: "Más de 12 millones",
   fact2_txt: "de toneladas de alimentos se pierden a lo largo de la cadena productiva peruana, según la FAO (2022).",
   fact3_num: "41 corredores",
-  fact3_txt: "logísticos identificó el MTC (2023). Los que unen La Libertad, Ica, Piura y Lambayeque con Lima concentran una parte importante de la carga.",
+  fact3_txt: "logísticos identificó el MTC (2023). FríoTrack propone iniciar en las rutas que unen La Libertad, Ica, Piura y Lambayeque con Lima.",
   prob_sources: "Fuentes: Banco Mundial (2023), FAO (2022), MTC (2023).",
   cmp_today_title: "Hoy, en ruta",
   cmp_today_1: "Termómetros manuales o registradores pasivos, sin conexión remota.",
@@ -303,3 +303,11 @@ window.FT_I18N.es = {
   viz_ago: "hace 2 min",
   viz_ago2: "hace 9 min"
 };
+
+Object.assign(window.FT_I18N.es, {"seg1_cta": "Explorar como coordinador logístico", "seg2_cta": "Explorar como cliente de carga", "f_error": "No se pudo enviar el mensaje. Inténtalo nuevamente más tarde.", "f_scope": "Demostración académica: este formulario valida tus datos, pero no envía mensajes. Sigue el proyecto en GitHub."});
+
+Object.assign(window.FT_I18N.es, {"f_demo_title": "Tus datos de ejemplo son válidos", "f_demo_msg": "Gracias, {name}. Esta demostración no envió una solicitud ni agendó una reunión."});
+
+Object.assign(window.FT_I18N.es, {"team5_role": "Impact Mapping y backlog", "team5_desc": "Requisitos y priorización."});
+
+Object.assign(window.FT_I18N.es, {"fact2_txt": "de toneladas de alimentos se estima que se pierden o desperdician al año en Perú (FAO, 2026). La cifra nacional no se limita al transporte refrigerado.", "prob_sources": "Fuentes: Banco Mundial (2023), FAO (2026), MTC (2023/2024)."});

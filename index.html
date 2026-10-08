@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-419">
+<html lang="en-US">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -203,6 +203,7 @@
                     </div>
                 </div>
                 <p class="sources" data-i18n="prob_sources">Fuentes: Banco Mundial (2023), FAO (2022), MTC (2023).</p>
+                <p class="sources"><a href="https://lpi.worldbank.org/sites/default/files/2023-04/LPI_2023_report_with_layout.pdf" target="_blank" rel="noopener noreferrer">World Bank · LPI 2023</a> · <a href="https://www.fao.org/peru/noticias/detail/fao-y-midagri-fortalecen-acciones-para-reducir-la-p%C3%A9rdida-y-desperdicio-de-alimentos-en-el-per%C3%BA/es" target="_blank" rel="noopener noreferrer">FAO Perú</a> · <a href="https://www.gob.pe/institucion/mtc/normas-legales/4081616-362-2023-mtc-01" target="_blank" rel="noopener noreferrer">MTC · PNSILT 2032</a></p>
             </div>
         </section>
 
@@ -468,7 +469,8 @@
                                 <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="seg1_g3">Una ventaja competitiva.</span></li>
                             </ul>
                         </div>
-                    </div>
+                </div>
+                    <button type="button" class="btn btn-primary action-register" data-role="coordinator" data-i18n="seg1_cta">Explore the application</button>
                 </div>
 
                 <div class="tab-panel" role="tabpanel" id="panel-seg2" aria-labelledby="tab-seg2" tabindex="0" hidden>
@@ -492,7 +494,8 @@
                                 <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="seg2_g3">Datos para comparar proveedores.</span></li>
                             </ul>
                         </div>
-                    </div>
+                </div>
+                    <button type="button" class="btn btn-primary action-register" data-role="cargo-client" data-i18n="seg2_cta">Explore the application</button>
                 </div>
             </div>
         </section>
@@ -633,7 +636,9 @@
                 </div>
 
                 <div class="form-card reveal">
+                    <p class="field-hint" data-i18n="f_scope">Demo: the form does not send messages yet.</p>
                     <form id="contactForm" novalidate>
+                        <p id="contactError" role="alert" hidden></p>
                         <div class="field">
                             <label for="ctName" data-i18n="f_name">Nombres y apellidos</label>
                             <input type="text" id="ctName" name="name" autocomplete="name" required data-i18n-placeholder="f_name_ph" placeholder="Ej. Juan Pérez">
@@ -665,7 +670,7 @@
 
                     <div class="form-success" id="contactSuccess" role="status" hidden>
                         <svg class="icon icon-lg" aria-hidden="true"><use href="#i-check"/></svg>
-                        <h3 data-i18n="f_ok_title">Recibimos tus datos</h3>
+                        <h3 data-contact-title data-i18n="f_demo_title">Your sample details are valid</h3>
                         <p id="contactSuccessMsg"></p>
                         <p class="form-demo" id="contactDemo" data-i18n="f_ok_demo" hidden>Versión demostrativa: por ahora los datos no se envían a ningún servidor.</p>
                         <button type="button" class="btn btn-outline" id="contactAgain" data-i18n="f_ok_again">Enviar otro mensaje</button>
@@ -700,6 +705,7 @@
                     <li><a href="#about" data-i18n="nav_about">Quiénes somos</a></li>
                     <li><a href="#team" data-i18n="nav_team">Equipo</a></li>
                     <li><a href="#contact" data-i18n="nav_contact">Contacto</a></li>
+                    <li><a href="https://github.com/upc-pre-202620-1asi0730-8088-FrioTrack" target="_blank" rel="noopener noreferrer">GitHub · BlackStartup</a></li>
                 </ul>
             </div>
             <div class="footer-links">
@@ -716,42 +722,11 @@
         </div>
     </footer>
 
-    <!-- MODAL DE INICIO DE SESIÓN / REGISTRO -->
-    <div id="authModal" class="modal" hidden>
-        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-            <button type="button" class="close-btn" id="closeModal" data-i18n-aria="auth_close" aria-label="Cerrar"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
-            <h2 id="modalTitle" data-i18n="auth_login_title">Iniciar sesión</h2>
-            <form id="authForm">
-                <div class="field">
-                    <label for="authEmail" data-i18n="auth_email">Correo electrónico</label>
-                    <input type="email" id="authEmail" autocomplete="email" required data-i18n-placeholder="auth_email_ph" placeholder="nombre@empresa.com">
-                </div>
-                <div class="field" id="phoneGroup" hidden>
-                    <label for="authPhone" data-i18n="auth_phone">Celular</label>
-                    <input type="tel" id="authPhone" autocomplete="tel" inputmode="tel" data-i18n-placeholder="f_phone_ph" placeholder="+51 999 888 777">
-                </div>
-                <div class="field">
-                    <label for="authPassword" data-i18n="auth_password">Contraseña</label>
-                    <input type="password" id="authPassword" autocomplete="current-password" required
-                           data-i18n-placeholder="auth_password_ph" placeholder="Mín. 8 caracteres, 1 mayúscula y 1 número"
-                           aria-describedby="authPwdHint">
-                    <p class="field-hint" id="authPwdHint" data-i18n="auth_password_title" hidden>La contraseña debe tener al menos 8 caracteres, con una mayúscula, una minúscula y un número.</p>
-                </div>
-                <p class="auth-terms" id="authTerms" hidden><span data-i18n="auth_terms_pre">Al crear tu cuenta aceptas los </span><a href="Terms-and-Condition.html" data-i18n="auth_terms_link">términos y condiciones</a></p>
-                <button type="submit" class="btn btn-primary btn-block" id="authSubmitBtn" data-i18n="auth_login_btn">Ingresar</button>
-                <p class="auth-msg" id="authMsg" role="status" hidden data-i18n="auth_demo_msg">Esta es una versión demostrativa.</p>
-            </form>
-            <p class="auth-switch">
-                <span id="authSwitchText" data-i18n="auth_no_account">¿No tienes cuenta?</span>
-                <a href="#" id="authSwitchLink" data-i18n="auth_register_link">Regístrate aquí</a>
-            </p>
-        </div>
-    </div>
-
     <script src="i18n/es.js"></script>
     <script src="i18n/en.js"></script>
     <script src="assets/js/i18n.js"></script>
     <script src="assets/js/hero-sim.js"></script>
+    <script src="assets/js/config.js"></script>
     <script src="assets/js/app.js"></script>
     <script src="assets/js/ui.js"></script>
 </body>
