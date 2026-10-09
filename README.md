@@ -49,17 +49,3 @@ En **Settings → Pages**, elige la rama `main` y la carpeta raíz. La direcció
 
 Los mensajes de *commit* siguen Conventional Commits (`feat:`, `fix:`, `docs:`, `style:`).
 
-## Qué editar
-
-- **Fotos del equipo:** copia los PNG en `assets/images/team/` (ver `README.txt` de esa carpeta). Sin foto, se muestran las iniciales.
-- **Precios referenciales:** constante `PLANS` al inicio de `assets/js/app.js`.
-- **Formulario de contacto:** define `CONTACT_ENDPOINT` en `app.js` cuando exista un servicio que reciba los datos. Mientras sea `null`, el formulario solo confirma en pantalla y avisa que es una demostración.
-- **Textos:** todo está en `i18n/es.js` y `i18n/en.js` (mismas claves en ambos).
-- **Términos y condiciones:** borrador informativo; revisar con asesoría legal.
-
-## Notas
-
-- Los datos del panel del hero son **simulados**.
-- Cifras de contexto: Banco Mundial (2023), FAO (2022), MTC (2023), las mismas fuentes del Capítulo I del informe.
-- El idioma inicial sigue al del navegador (español o inglés) y se recuerda con `localStorage`.
-- Accesibilidad: atributos ARIA, foco visible, navegación por teclado, contraste según WCAG 2.2 AA (bordes de campos incluidos) y `prefers-reduced-motion`.
