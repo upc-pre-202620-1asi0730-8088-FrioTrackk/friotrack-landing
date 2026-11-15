@@ -89,9 +89,15 @@ test('a published video loads a privacy-domain iframe only after its play button
   }
 });
 
-test('the production configuration contains no sample videos or contact delivery claim', () => {
+test('the production configuration uses the published product video without sample videos or a contact delivery claim', () => {
   const context = { window: {} };vm.createContext(context);vm.runInContext(script('assets/js/config.js'), context);
-  assert.equal(context.window.FT_CONFIG.videos.product.youtubeUrl, null);
+  assert.equal(context.window.FT_CONFIG.videos.product.youtubeUrl, 'https://youtu.be/t8ZrSPgQvr0');
+  const product = videoContext(context.window.FT_CONFIG.videos.product.youtubeUrl, null);
+  assert.equal(product.section.hidden, false);
+  assert.equal(product.created.length, 0);
+  product.cards[0].button.click();
+  assert.equal(product.created[0].src, 'https://www.youtube-nocookie.com/embed/t8ZrSPgQvr0');
+  assert.equal(new URL(context.window.FT_CONFIG.videos.product.streamUrl).hostname, 'upcedupe-my.sharepoint.com');
   assert.equal(context.window.FT_CONFIG.videos.team.youtubeUrl, null);
   assert.equal(context.window.FT_CONFIG.contactEndpoint, null);
 });
