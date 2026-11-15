@@ -98,6 +98,6 @@ test('the production configuration uses the published product video without samp
   product.cards[0].button.click();
   assert.equal(product.created[0].src, 'https://www.youtube-nocookie.com/embed/t8ZrSPgQvr0');
   assert.equal(new URL(context.window.FT_CONFIG.videos.product.streamUrl).hostname, 'upcedupe-my.sharepoint.com');
-  assert.equal(context.window.FT_CONFIG.videos.team.youtubeUrl, null);
+  assert.equal(context.window.FT_CONFIG.videos.team.youtubeUrl, 'https://youtu.be/KHjfFKsW7j0');
   assert.equal(context.window.FT_CONFIG.contactEndpoint, null);
 });
