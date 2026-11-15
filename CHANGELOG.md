@@ -7,7 +7,7 @@
 - Reproductores accesibles con carga tras pulsar Reproducir y origen `youtube-nocookie.com`.
 - Comprobaciones de traducciones, preferencia de idioma y carga segura de videos con `node --test tests/*.test.cjs`.
 
-Las grabaciones y su publicación siguen pendientes. Estos cambios no acreditan un nuevo despliegue Azure.
+Las tarjetas de video se activan mediante enlaces configurados. Esta release identifica el código fuente de las secciones opcionales de producto y equipo.
 
 ## 0.1.0 — 10 de noviembre de 2026
 

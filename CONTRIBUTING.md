@@ -8,4 +8,4 @@ Cada integrante configura su propio nombre y correo asociado a GitHub. Los commi
 4. Prepara `release/<version>` desde `develop`, documenta el alcance y valida el contenido final. Integra en `main`, crea la etiqueta sobre el commit revisado y publica la release; devuelve esa integración a `develop`.
 5. Para una corrección urgente, crea `hotfix/<cambio>` desde `main`, valida y devuelve la integración a ambas ramas.
 
-No muevas etiquetas existentes para aparentar un avance distinto. Las notas de release deben indicar qué se verificó, el commit de entrega y qué servicios siguen pendientes. Subir una release no equivale a desplegar en Azure.
+No muevas etiquetas existentes para aparentar un avance distinto. Las notas de release describen las verificaciones, el commit de entrega y el alcance de los servicios incluidos. Subir una release no equivale a desplegar en Azure.

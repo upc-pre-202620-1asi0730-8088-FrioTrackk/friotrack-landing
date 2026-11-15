@@ -6,11 +6,13 @@ HTML, CSS y JavaScript puros, sin dependencias ni compilación. Implementa el di
 
 ## Producto y alcance
 
-- [Landing publicada de TB1](https://friotracktb1bce6db1b.z22.web.core.windows.net/landing/).
+- [Landing publicada en Azure](https://friotracktb1bce6db1b.z22.web.core.windows.net/landing/).
+- [Landing publicada en GitHub Pages](https://upc-pre-202620-1asi0730-8088-friotrackk.github.io/friotrack-landing/).
 - [Aplicación SPA](https://friotracktb1bce6db1b.z22.web.core.windows.net/).
-- [Fuente de la SPA y API de apoyo](https://github.com/upc-pre-202620-1asi0730-8088-FrioTrackk/friotrack-frontend).
+- [Repositorio de la SPA](https://github.com/upc-pre-202620-1asi0730-8088-FrioTrackk/friotrack-frontend).
+- [Repositorio de la API](https://github.com/upc-pre-202620-1asi0730-8088-FrioTrackk/friotrack-api).
 
-Los cambios de este repositorio deben desplegarse para aparecer en Azure. Una release de GitHub identifica el código fuente; por sí sola no actualiza el sitio publicado.
+La versión AV2 está publicada en GitHub Pages y Azure. El [recibo de publicación](https://github.com/upc-pre-202620-1asi0730-8088-FrioTrackk/friotrack-frontend/blob/main/docs/redeployment-landing.json) identifica el artefacto y la revisión de fuentes publicados en Azure.
 
 El inicio de sesión abre la aplicación por perfil (`coordinator` o `cargo-client`) conservando el idioma (`es` o `en`). El registro público conduce a una cuenta de cliente de carga. La API decide los permisos; seleccionar un perfil en un enlace no otorga acceso de coordinador. La landing no solicita ni guarda contraseñas.
 
@@ -62,13 +64,11 @@ Edita `assets/js/config.js` para cambiar `applicationUrl`, `contactEndpoint` o l
 
 `videos.product.youtubeUrl` y `videos.team.youtubeUrl` aceptan únicamente enlaces HTTPS de YouTube con un identificador válido. Sus valores iniciales son `null`: la sección y las tarjetas no se muestran mientras no exista una URL publicada válida. `streamUrl` permite registrar la referencia institucional que se incorporará al reporte; no se incrusta el Stream privado en el sitio público.
 
-El reproductor se crea con `youtube-nocookie.com` después de pulsar Reproducir. No se cargan iframes vacíos ni videos de ejemplo. Los títulos y botones son bilingües. Configurar un enlace no certifica que su contenido cumpla el enunciado ni que esté disponible para todos los visitantes; revisar la publicación antes de desplegar.
+El reproductor se crea con `youtube-nocookie.com` después de pulsar Reproducir. No se cargan iframes vacíos ni videos de ejemplo. Los títulos y botones son bilingües. La visibilidad de cada tarjeta depende de que su enlace de configuración sea válido.
 
-Las grabaciones, opiniones de usuarios y testimonios del equipo permanecen pendientes de material auténtico. La preparación de estas secciones no se presenta como videos completados.
+Publica los HTML, `assets/` e `i18n/` en `/landing/` del hosting estático, preservando los archivos de la SPA en la raíz. El sitio también está publicado en GitHub Pages.
 
-Publica los HTML, `assets/` e `i18n/` en `/landing/` del hosting estático, preservando los archivos de la SPA en la raíz. GitHub Pages puede usarse como hosting alternativo si se configura explícitamente; el destino de TB1 documentado es Azure.
-
-La recepción de contactos, los sensores físicos y los pagos requieren servicios que este sitio no implementa. El texto de términos es informativo y debe revisarse antes de utilizar el producto fuera del proyecto académico.
+La recepción de contactos, los sensores físicos y los pagos requieren servicios que este sitio no implementa. El texto de términos tiene carácter informativo dentro del proyecto académico.
 
 ## Flujo de trabajo con Git (GitFlow)
 
