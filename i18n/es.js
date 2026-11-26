@@ -246,6 +246,8 @@ window.FT_I18N.es = {
   ft_tagline: "Monitoreo de la cadena de frío en el transporte terrestre de alimentos perecibles.",
   ft_product: "Producto",
   ft_company: "Empresa",
+  ft_youtube: "FríoTrack en YouTube",
+  ft_github: "Comunidad en GitHub",
   ft_legal: "Legal",
   ft_terms: "Términos y condiciones",
   ft_data: "Protección de datos",
