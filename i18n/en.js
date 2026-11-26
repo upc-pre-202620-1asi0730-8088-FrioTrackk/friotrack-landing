@@ -245,6 +245,8 @@ window.FT_I18N.en = {
   ft_tagline: "Cold chain monitoring for the ground transport of perishable food.",
   ft_product: "Product",
   ft_company: "Company",
+  ft_youtube: "FríoTrack on YouTube",
+  ft_github: "GitHub community",
   ft_legal: "Legal",
   ft_terms: "Terms and conditions",
   ft_data: "Data protection",
